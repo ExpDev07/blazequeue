@@ -1,0 +1,5 @@
+name: BlazeQueueBungeeCord
+main: com.github.expdev07.blazequeue.bungeecord.BlazeQueuePlugin
+version: 1.0-SNAPSHOT
+author: ExpDev07
+description: A description

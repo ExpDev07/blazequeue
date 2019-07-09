@@ -1,0 +1,5 @@
+name: BlazeQueueSpigot
+main: com.github.expdev07.blazequeue.spigotmc.BlazeQueuePlugin
+version: 1.0-SNAPSHOT
+authors: [ExpDev07]
+description: A description.
