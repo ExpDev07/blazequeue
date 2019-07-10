@@ -48,6 +48,16 @@ public class BlazeQueueService implements QueueService {
     }
 
     /**
+     * Sets the queue for the provided server.
+     *
+     * @param server The server
+     * @param queue The queue
+     */
+    public void setQueue(String server, Queue<ProxiedPlayer> queue) {
+        queues.put(server, queue);
+    }
+
+    /**
      * Registers a {@link Queue queue} for each of the provided servers.
      *
      * @param servers The servers
@@ -56,7 +66,7 @@ public class BlazeQueueService implements QueueService {
         // Just loop through the servers and individually assign a queue to each.
         for (String server : servers) {
             System.out.println("Registering a queue for \"" + server + "\".");
-            queues.put(server, new BlazeQueue(new PermissionPriority()));
+            this.setQueue(server, new BlazeQueue(new PermissionPriority()));
         }
     }
 
