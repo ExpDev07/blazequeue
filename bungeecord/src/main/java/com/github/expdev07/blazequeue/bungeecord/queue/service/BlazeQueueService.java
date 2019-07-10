@@ -31,7 +31,7 @@ public class BlazeQueueService implements QueueService {
      * the provided {@link ProxyServer proxy}.
      */
     public BlazeQueueService(ProxyServer proxy) {
-        // Register queues for every server registered to the proxy,
+        // Create queues for every server registered to the proxy,
         this.registerQueues(proxy.getServers().keySet());
     }
 
@@ -43,6 +43,7 @@ public class BlazeQueueService implements QueueService {
      */
     @Override
     public Queue<ProxiedPlayer> getQueue(String server) {
+        // Find the queue or just return an empty one if lookup fails.
         return queues.getOrDefault(server, new LinkedList<>());
     }
 
