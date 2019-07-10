@@ -1,8 +1,7 @@
 package com.github.expdev07.blazequeue.bungeecord;
 
-import com.github.expdev07.blazequeue.bungeecord.queue.BlazeQueue;
-import com.github.expdev07.blazequeue.bungeecord.queue.QueueContainer;
-import com.github.expdev07.blazequeue.bungeecord.queue.priority.provider.PermissionPriority;
+import com.github.expdev07.blazequeue.bungeecord.queue.service.BlazeQueueService;
+import com.github.expdev07.blazequeue.bungeecord.queue.service.QueueService;
 import net.md_5.bungee.api.plugin.Plugin;
 
 /**
@@ -11,19 +10,17 @@ import net.md_5.bungee.api.plugin.Plugin;
 public class BlazeQueuePlugin extends Plugin {
 
     /**
-     * The container which holds the queue.
+     * The service used for queues.
      */
-    private QueueContainer container;
+    private QueueService service;
 
     /**
      * Called when plugin enables.
      */
     @Override
     public void onEnable() {
-        // Create a new queue container with a blaze queue using the permission-based priorities.
-        this.container = new QueueContainer(new BlazeQueue(new PermissionPriority()));
-
-
+        // Use the default implementation that already comes with this plugin.
+        this.service = new BlazeQueueService(this.getProxy());
     }
 
     /**
@@ -35,12 +32,21 @@ public class BlazeQueuePlugin extends Plugin {
     }
 
     /**
-     * Gets the queue container.
+     * Gets the queue service.
      *
-     * @return The queue container
+     * @return The queue service
      */
-    public QueueContainer getContainer() {
-        return container;
+    public QueueService getService() {
+        return service;
+    }
+
+    /**
+     * Sets the queue service.
+     *
+     * @param service The new queue service to use
+     */
+    public void setService(QueueService service) {
+        this.service = service;
     }
 
 }
