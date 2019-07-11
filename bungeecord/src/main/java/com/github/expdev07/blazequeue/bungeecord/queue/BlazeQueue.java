@@ -13,7 +13,7 @@ import java.util.PriorityQueue;
 public class BlazeQueue extends PriorityQueue<ProxiedPlayer> {
 
     /**
-     * Constructs a new {@link BlazeQueue} with the initial capacity of 11 and the provided {@link PriorityProvider}.
+     * Constructs a new {@link BlazeQueue} with the initial capacity of 11 and the given {@link PriorityProvider}.
      *
      * @param provider Provider for priorities.
      */

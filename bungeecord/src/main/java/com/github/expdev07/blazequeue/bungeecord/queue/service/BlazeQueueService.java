@@ -10,7 +10,7 @@ import java.util.*;
 /**
  * Blaze's out-of-the-box implementation of a {@link QueueService}. It stores everything in-memory and should suffice
  * for most usages, but at times, you might want to create your own implementation if, e.g, you'd like the queues to
- * be saved to and retrieved from an external database.
+ * be saved to and retrieved from an external database (MySQL, Redis, etc).
  */
 public class BlazeQueueService implements QueueService {
 
@@ -31,7 +31,7 @@ public class BlazeQueueService implements QueueService {
      * the provided {@link ProxyServer proxy}.
      */
     public BlazeQueueService(ProxyServer proxy) {
-        // Create queues for every server registered to the proxy,
+        // Create queues for every server registered to the proxy.
         this.registerQueues(proxy.getServers().keySet());
     }
 
