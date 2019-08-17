@@ -15,4 +15,9 @@ public final class Priority {
      */
     public static final int LOWEST = Integer.MAX_VALUE;
 
+    /**
+     * No priority.
+     */
+    public static final int NONE = 0;
+
 }

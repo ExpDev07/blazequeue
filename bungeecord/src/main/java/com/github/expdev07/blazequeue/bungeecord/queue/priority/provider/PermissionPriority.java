@@ -3,6 +3,8 @@ package com.github.expdev07.blazequeue.bungeecord.queue.priority.provider;
 import com.github.expdev07.blazequeue.bungeecord.queue.priority.Priority;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 
+import java.util.OptionalInt;
+
 /**
  * A {@link PriorityProvider} that bases the priority on permissions.
  *
@@ -23,7 +25,18 @@ public class PermissionPriority implements PriorityProvider {
         if (player.hasPermission(PERMISSION_PREFIX + ".bypass")) {
             return Priority.HIGHEST;
         }
-        return 0;
+
+        // Find the player's priority by filtering out all the permissions that start with the prefix, then remove the
+        // prefix so that just the priority number is left. Turn the strings into integers, sort them, and find the first.
+        OptionalInt priority = player.getPermissions().stream()
+                .filter(perm -> perm.startsWith(PERMISSION_PREFIX))
+                .map(str -> str.replace(PERMISSION_PREFIX, ""))
+                .mapToInt(Integer::parseInt)
+                .sorted().findFirst();
+
+        // If we couldn't find any priority, just default.
+        return priority.isPresent() ? priority.getAsInt() : Priority.NONE;
     }
+
 
 }
